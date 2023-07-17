@@ -131,11 +131,12 @@ public class Zal {
 
         }
         else if(menuChoose == 4){
-            endOrder(handler.formOrder(handler.chiefOrder(getOrder(),chief,kitchen.getDish()),
-                    handler.coldProcess(getOrder(),cook,kitchen.getDish()),
-                    handler.hotProcess(getOrder(),cook,kitchen.getDish()),
-                    handler.haveSause(getOrder(),cook,kitchen.getDish()),
-                    handler.barItems(getOrder(),bar.listDrink(),barMan)),
+            HashMap<String, Integer> order = getOrder();
+            endOrder(handler.formOrder(handler.chiefOrder(order,chief,kitchen.getDish()),
+                    handler.coldProcess(order,cook,kitchen.getDish()),
+                    handler.hotProcess(order,cook,kitchen.getDish()),
+                    handler.haveSause(order,cook,kitchen.getDish()),
+                    handler.barItems(order,bar.listDrink(),barMan)),
                     handler.getPriceMenu());
 
         }
@@ -143,7 +144,12 @@ public class Zal {
     }
 
     public void endOrder(HashMap<String, Integer> validOrder,HashMap<String, Item> priceData) {
-
+        Chief chief = new Chief();
+        DataHandler handler = new DataHandler();
+        Kitchen kitchen = new Kitchen();
+        Bar bar = new Bar();
+        Cook cook = new Cook();
+        BarMan barMan = new BarMan();
 
         if (!validOrder.isEmpty()) {
             System.out.println("ГОТОВО! " + nameAndPosition +
@@ -166,6 +172,20 @@ public class Zal {
             int choose = scanner.nextInt();
 
             if (choose ==1){
+                HashMap<String, Integer> order = getOrder();
+
+                HashMap<String, Integer> handleOrder = handler.formOrder(
+                        handler.chiefOrder(order,chief,kitchen.getDish()),
+                        handler.coldProcess(order,cook,kitchen.getDish()),
+                        handler.hotProcess(order,cook,kitchen.getDish()),
+                        handler.haveSause(order,cook,kitchen.getDish()),
+                        handler.barItems(order,bar.listDrink(),barMan));
+
+                endOrder(handleOrder,
+                        handler.getPriceMenu());
+                //не виходить зробити вивід позицій яких немає
+                handler.nonValidOrderView(handler.nonValidOrder(order,handleOrder));
+
 
             }
             else if (choose == 2){

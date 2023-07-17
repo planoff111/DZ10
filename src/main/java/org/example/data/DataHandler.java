@@ -6,7 +6,6 @@ import org.example.employees.Chief;
 import org.example.employees.Cook;
 import org.example.restorauntEntity.Bar;
 import org.example.restorauntEntity.Kitchen;
-
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -114,6 +113,21 @@ public class DataHandler {
             validOrder.put(itemName, quantity);
         }
         return validOrder;
+    }
+
+    public List<String> nonValidOrder(HashMap<String, Integer> orders,
+                                                  HashMap<String, Integer> validOrders){
+        List<String> nonValidOrder = orders.keySet()
+                .stream()
+                .filter(validOrder -> !validOrders.containsKey(orders))
+                .collect(Collectors.toList());
+
+
+        return nonValidOrder;
+    }
+    public void nonValidOrderView(List<String> orders){
+
+        System.out.println("Позиції, що не додані до ордеру " + String.join(", ", orders));
     }
 
 
