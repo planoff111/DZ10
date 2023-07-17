@@ -1,6 +1,6 @@
-package org.example.model;
+package org.example.employees;
 
-public class Chief extends Cook{
+public class Chief extends Cook {
 
     public Chief() {
     }

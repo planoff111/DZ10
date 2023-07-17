@@ -1,4 +1,6 @@
-package org.example.model;
+package org.example.restorauntEntity;
+
+import org.example.dishes.Dish;
 
 import java.util.ArrayList;
 import java.util.HashMap;

@@ -1,6 +1,6 @@
-package org.example.model;
+package org.example.employees;
 
-public class BarMan extends Employee implements MakeACocktail{
+public class BarMan extends Employee implements MakeACocktail {
 
 
     public BarMan() {

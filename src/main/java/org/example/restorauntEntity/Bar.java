@@ -1,11 +1,13 @@
-package org.example.model;
+package org.example.restorauntEntity;
+
+import org.example.dishes.Drink;
 
 import java.util.HashMap;
 import java.util.List;
 
 public class Bar {
 
-    public HashMap<String,Drink> listDrink(){
+    public HashMap<String, Drink> listDrink(){
         HashMap<String,Drink> list = new HashMap<>();
         list.put("мохіто",new Drink("Мохіто",80,true,false, List.of("Лайм","Мята",
                 "Вода","Цукор","Спрайт")));

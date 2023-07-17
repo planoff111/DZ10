@@ -1,6 +1,4 @@
-package org.example.model;
-
-import java.util.List;
+package org.example.dishes;
 
 public class Sause extends Item {
 

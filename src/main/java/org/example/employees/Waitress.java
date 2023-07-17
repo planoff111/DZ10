@@ -1,10 +1,10 @@
-package org.example.model;
+package org.example.employees;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class Waitress extends Employee{
+public class Waitress extends Employee {
     public Waitress() {
     }
 

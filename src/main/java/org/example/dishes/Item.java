@@ -1,4 +1,4 @@
-package org.example.model;
+package org.example.dishes;
 
 public class Item {
 private String name;

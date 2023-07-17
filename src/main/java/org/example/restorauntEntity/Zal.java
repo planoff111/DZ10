@@ -1,12 +1,19 @@
-package org.example.view;
+package org.example.restorauntEntity;
 
-import org.example.controller.DataHandler;
-import org.example.model.*;
+import org.example.dishes.Customer;
+import org.example.dishes.Dish;
+import org.example.dishes.Drink;
+import org.example.dishes.Item;
+import org.example.data.DataHandler;
+import org.example.employees.BarMan;
+import org.example.employees.Chief;
+import org.example.employees.Cook;
+import org.example.employees.Waitress;
 
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class View {
+public class Zal {
     Waitress waitress = new Waitress();
     private String nameAndPosition = waitress.chooseWaitress(waitress.listofWaitr());
 
@@ -57,6 +64,7 @@ public class View {
     }
 
     public void chooseMenu(){
+        BarMan barMan = new BarMan();
         Kitchen kitchen = new Kitchen();
         Bar bar = new Bar();
         Chief chief = new Chief();
@@ -123,23 +131,19 @@ public class View {
 
         }
         else if(menuChoose == 4){
-            endOrder(handler.handleOrder(getOrder(),
-                    kitchen.getDish(), bar.listDrink(),
-                    chief.imBoss(), cook.listOfCook(),
-                    kitchen.listOfSauses()),
+            endOrder(handler.formOrder(handler.chiefOrder(getOrder(),chief,kitchen.getDish()),
+                    handler.coldProcess(getOrder(),cook,kitchen.getDish()),
+                    handler.hotProcess(getOrder(),cook,kitchen.getDish()),
+                    handler.haveSause(getOrder(),cook,kitchen.getDish()),
+                    handler.barItems(getOrder(),bar.listDrink(),barMan)),
                     handler.getPriceMenu());
 
         }
 
     }
 
-    public void endOrder(HashMap<String, Integer> validOrder,HashMap<String,Item> priceData) {
+    public void endOrder(HashMap<String, Integer> validOrder,HashMap<String, Item> priceData) {
 
-        Kitchen kitchen = new Kitchen();
-        Bar bar = new Bar();
-        Chief chief = new Chief();
-        Cook cook = new Cook();
-        DataHandler handler = new DataHandler();
 
         if (!validOrder.isEmpty()) {
             System.out.println("ГОТОВО! " + nameAndPosition +
@@ -162,11 +166,7 @@ public class View {
             int choose = scanner.nextInt();
 
             if (choose ==1){
-                endOrder(handler.handleOrder(getOrder(),
-                                kitchen.getDish(), bar.listDrink(),
-                                chief.imBoss(), cook.listOfCook(),
-                                kitchen.listOfSauses()),
-                        handler.getPriceMenu());
+
             }
             else if (choose == 2){
                 System.out.println("Добре, тоді до побачення, будемо раді вас бачити))");

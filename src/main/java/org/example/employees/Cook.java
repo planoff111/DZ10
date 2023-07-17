@@ -1,9 +1,9 @@
-package org.example.model;
+package org.example.employees;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Cook extends Employee implements SauseMaiker,Frying,Cookaible{
+public class Cook extends Employee implements SauseMaiker, Frying, Cookaible {
 
     private boolean isHotProcess;
     private boolean isColdProcess;

@@ -1,8 +1,6 @@
 package org.example;
 
-import org.example.controller.DataHandler;
-import org.example.model.*;
-import org.example.view.View;
+import org.example.restorauntEntity.Zal;
 
 import java.util.Scanner;
 
@@ -28,7 +26,7 @@ public class Main {
     }
 
     public static void chooseCast(int choose) {
-       View view = new View();
+       Zal view = new Zal();
 
         view.welcome();
         switch (choose) {
