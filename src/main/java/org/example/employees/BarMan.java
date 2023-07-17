@@ -1,6 +1,6 @@
 package org.example.employees;
 
-public class BarMan extends Employee implements MakeACocktail {
+public class BarMan extends Employee  {
 
 
     public BarMan() {
@@ -16,9 +16,6 @@ public class BarMan extends Employee implements MakeACocktail {
         return new BarMan("Олександр","Бармен");
     }
 
-    @Override
-    public void makeCocktail() {
 
-    }
 
 }

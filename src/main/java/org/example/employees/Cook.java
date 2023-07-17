@@ -3,7 +3,7 @@ package org.example.employees;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Cook extends Employee implements SauseMaiker, Frying, Cookaible {
+public class Cook extends Employee {
 
     private boolean isHotProcess;
     private boolean isColdProcess;
@@ -43,20 +43,7 @@ public class Cook extends Employee implements SauseMaiker, Frying, Cookaible {
         isCookingSauce = cookingSauce;
     }
 
-    @Override
-    public void cocking() {
 
-    }
-
-    @Override
-    public void frying() {
-
-    }
-
-    @Override
-    public void makeASause() {
-
-    }
 
     public List<Cook>listOfCook(){
         List<Cook> list = new ArrayList<>();
