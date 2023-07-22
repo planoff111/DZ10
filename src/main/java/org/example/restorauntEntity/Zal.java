@@ -50,7 +50,7 @@ public class Zal {
     public HashMap<String, Integer> getOrder() {
         HashMap<String, Integer> order = new HashMap<>();
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Введіть ваше замовлення через кому без дублів і без пробілів!");
+        System.out.println("Введіть ваше замовлення через кому без дублів і без пробілів і страви, які є в наявності!");
         String inputItems = scanner.nextLine().toLowerCase();
         String[] items = inputItems.split(",");
         for (String item : items) {
@@ -71,8 +71,8 @@ public class Zal {
         Cook cook = new Cook();
         DataHandler handler = new DataHandler();
         System.out.println("Переглянете звичайне меню чи від шефа?\n1 - звичайне\n2 - від шефа" +
-                "\n 3 переглянути меню Бара"+
-                "\n 4 Я Готовий зробити замовлення) Покликати " + nameAndPosition);
+                "\n3 переглянути меню Бара"+
+                "\n4 Я Готовий зробити замовлення) Покликати " + nameAndPosition);
         Scanner scanner = new Scanner(System.in);
         int menuChoose = scanner.nextInt();
         if (menuChoose ==1){
@@ -133,9 +133,9 @@ public class Zal {
         else if(menuChoose == 4){
             HashMap<String, Integer> order = getOrder();
             endOrder(handler.formOrder(handler.chiefOrder(order,chief,kitchen.getDish()),
-                    handler.coldProcess(order,cook,kitchen.getDish()),
-                    handler.hotProcess(order,cook,kitchen.getDish()),
-                    handler.haveSause(order,cook,kitchen.getDish()),
+                    handler.coldProcess(order,cook.listOfCook(),kitchen.getDish()),
+                    handler.hotProcess(order,cook.listOfCook(),kitchen.getDish()),
+                    handler.haveSause(order,cook.listOfCook(),kitchen.getDish()),
                     handler.barItems(order,bar.listDrink(),barMan)),
                     handler.getPriceMenu());
 
@@ -176,15 +176,12 @@ public class Zal {
 
                 HashMap<String, Integer> handleOrder = handler.formOrder(
                         handler.chiefOrder(order,chief,kitchen.getDish()),
-                        handler.coldProcess(order,cook,kitchen.getDish()),
-                        handler.hotProcess(order,cook,kitchen.getDish()),
-                        handler.haveSause(order,cook,kitchen.getDish()),
+                        handler.coldProcess(order,cook.listOfCook(),kitchen.getDish()),
+                        handler.hotProcess(order,cook.listOfCook(),kitchen.getDish()),
+                        handler.haveSause(order,cook.listOfCook(),kitchen.getDish()),
                         handler.barItems(order,bar.listDrink(),barMan));
 
-                endOrder(handleOrder,
-                        handler.getPriceMenu());
-                //не виходить зробити вивід позицій яких немає
-                handler.nonValidOrderView(handler.nonValidOrder(order,handleOrder));
+                endOrder(handleOrder, handler.getPriceMenu());
 
 
             }

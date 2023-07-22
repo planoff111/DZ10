@@ -30,7 +30,7 @@ public class DataHandler {
     }
 
     public HashMap<String, Integer> hotProcess(HashMap<String, Integer> order,
-                                               Cook cook, HashMap<String, Dish> dishes) {
+                                               List<Cook> cooks, HashMap<String, Dish> dishes) {
         HashMap<String, Integer> validOrder = new HashMap<>();
         for (Map.Entry<String, Integer> entry : order.entrySet()) {
             String itemName = entry.getKey().toLowerCase();
@@ -39,20 +39,27 @@ public class DataHandler {
                     .filter(dish -> dish.getKey().equals(itemName))
                     .filter(dish -> dish.getValue().isHotProcess())
                     .map(dish -> dish.getValue().getIngridients())
-                    .forEach(dish -> System.out.println("Страва " + dishes.get(itemName).getName() +
-                            " На гарячому процессі : " + cook.getName() + " " + cook.getPosition() +
-                            "Список інгрідієнтів для повара " + dishes.get(itemName).getIngridients()
-                            + "Кількість: " + quantity)
-                    );
+                    .forEach(dish -> {
+                        System.out.println("Страва " + dishes.get(itemName).getName() +
+                                " На гарячому процессі:");
+
+                        for (Cook cook : cooks) {
+                            if (cook.isHotProcess()) {
+                                System.out.println("Повар: " + cook.getName() + " " + cook.getPosition());
+                            }
+                        }
+
+                        System.out.println("Список інгрідієнтів для повара: " + dishes.get(itemName).getIngridients() +
+                                " Кількість: " + quantity);
+                    });
 
             validOrder.put(itemName, quantity);
-
         }
         return validOrder;
     }
 
     public HashMap<String, Integer> coldProcess(HashMap<String, Integer> order,
-                                                Cook cook, HashMap<String, Dish> dishes) {
+                                                List<Cook> cooks, HashMap<String, Dish> dishes) {
         HashMap<String, Integer> validOrder = new HashMap<>();
         for (Map.Entry<String, Integer> entry : order.entrySet()) {
             String itemName = entry.getKey().toLowerCase();
@@ -61,21 +68,26 @@ public class DataHandler {
                     .filter(dish -> dish.getKey().equals(itemName))
                     .filter(dish -> dish.getValue().isColdProcess())
                     .map(dish -> dish.getValue().getIngridients())
-                    .forEach(dish -> System.out.println("Страва " + dishes.get(itemName).getName() +
-                            " На гарячому процессі : " + cook.getName() + " " + cook.getPosition() +
-                            "Список інгрідієнтів для повара " + dishes.get(itemName).getIngridients()
-                            + "Кількість: " + quantity)
-                    );
+                    .forEach(dish -> {
+                        System.out.println("Страва " + dishes.get(itemName).getName() +
+                                " На холодному процесі :");
+
+                        for (Cook cook : cooks) {
+                            if (cook.isColdProcess()) {
+                                System.out.println("Повар: " + cook.getName() + " " + cook.getPosition());
+                            }
+                        }
+                        System.out.println("Список інгрідієнтів для повара: " + dishes.get(itemName).getIngridients() +
+                                " Кількість: " + quantity);
+                    });
 
             validOrder.put(itemName, quantity);
-
         }
         return validOrder;
-
     }
 
     public HashMap<String, Integer> haveSause(HashMap<String, Integer> order,
-                                              Cook cook, HashMap<String, Dish> dishes) {
+                                              List<Cook> cooks, HashMap<String, Dish> dishes) {
         HashMap<String, Integer> validOrder = new HashMap<>();
         for (Map.Entry<String, Integer> entry : order.entrySet()) {
             String itemName = entry.getKey().toLowerCase();
@@ -84,11 +96,16 @@ public class DataHandler {
                     .filter(dish -> dish.getKey().equals(itemName))
                     .filter(dish -> dish.getValue().isHaveSause())
                     .map(dish -> dish.getValue().getIngridients())
-                    .forEach(dish -> System.out.println("Страва " + dishes.get(itemName).getName() +
-                            " На гарячому процессі : " + cook.getName() + " " + cook.getPosition() +
-                            "Список інгрідієнтів для повара " + dishes.get(itemName).getIngridients()
-                            + "Кількість: " + quantity)
-                    );
+                    .forEach(dish -> {
+                        System.out.println("Страва " + dishes.get(itemName).getName() +
+                                " Має соус. Повар, який готує соус: ");
+
+                        for (Cook cook : cooks) {
+                            if (cook.isCookingSauce()) {
+                                System.out.println("Повар: " + cook.getName() + " " + cook.getPosition());
+                            }
+                        }
+                    });
 
             validOrder.put(itemName, quantity);
         }
@@ -105,10 +122,10 @@ public class DataHandler {
                     .filter(drink -> drink.getKey().equals(itemName))
                     .map(drink -> drink.getValue().getIngridients())
                     .forEach(drink -> System.out.println("Напій: " + drinks.get(itemName).getName() +
-                            " Замовлення йде на бар готуватись" +
+                            " Замовлення йде на бар готуватись " +
                             barMan.barMan().getPosition() + " " + barMan.barMan().getName() +
-                            " Прийняв замовлення" + "Список інгрідієнтів для бармена "
-                            + drinks.get(itemName).getIngridients() + "Кількість: " + quantity)
+                            " Прийняв замовлення" + " Список інгрідієнтів для бармена "
+                            + drinks.get(itemName).getIngridients() + " Кількість: " + quantity)
                     );
             validOrder.put(itemName, quantity);
         }
