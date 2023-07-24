@@ -4,7 +4,6 @@ import org.example.dishes.Customer;
 import org.example.dishes.Dish;
 import org.example.dishes.Drink;
 import org.example.dishes.Item;
-import org.example.data.DataHandler;
 import org.example.employees.BarMan;
 import org.example.employees.Chief;
 import org.example.employees.Cook;
@@ -14,8 +13,9 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class Zal {
+    Kitchen kitchen = new Kitchen();
     Waitress waitress = new Waitress();
-    private String nameAndPosition = waitress.chooseWaitress(waitress.listofWaitr());
+    private String nameAndPosition = waitress.chooseWaitress(kitchen.listofWaitr());
 
 
     private int tableID = generateTableID();
@@ -65,11 +65,8 @@ public class Zal {
 
     public void chooseMenu(){
         BarMan barMan = new BarMan();
-        Kitchen kitchen = new Kitchen();
         Bar bar = new Bar();
         Chief chief = new Chief();
-        Cook cook = new Cook();
-        DataHandler handler = new DataHandler();
         System.out.println("Переглянете звичайне меню чи від шефа?\n1 - звичайне\n2 - від шефа" +
                 "\n3 переглянути меню Бара"+
                 "\n4 Я Готовий зробити замовлення) Покликати " + nameAndPosition);
@@ -132,12 +129,18 @@ public class Zal {
         }
         else if(menuChoose == 4){
             HashMap<String, Integer> order = getOrder();
-            endOrder(handler.formOrder(handler.chiefOrder(order,chief,kitchen.getDish()),
-                    handler.coldProcess(order,cook.listOfCook(),kitchen.getDish()),
-                    handler.hotProcess(order,cook.listOfCook(),kitchen.getDish()),
-                    handler.haveSause(order,cook.listOfCook(),kitchen.getDish()),
-                    handler.barItems(order,bar.listDrink(),barMan)),
-                    handler.getPriceMenu());
+            try {
+                endOrder(kitchen.formOrder(kitchen.chiefOrder(order,chief,kitchen.getDish()),
+                                kitchen.coldProcess(order,kitchen.listOfCook(),kitchen.getDish()),
+                                kitchen.hotProcess(order,kitchen.listOfCook(),kitchen.getDish()),
+                                kitchen.haveSause(order,kitchen.listOfCook(),kitchen.getDish()),
+                                kitchen.barItems(order,bar.listDrink(),barMan)),
+                        kitchen.getPriceMenu());
+
+            }catch (NullPointerException e){
+                System.out.println("Нема таких позицій(");
+            }
+
 
         }
 
@@ -145,10 +148,7 @@ public class Zal {
 
     public void endOrder(HashMap<String, Integer> validOrder,HashMap<String, Item> priceData) {
         Chief chief = new Chief();
-        DataHandler handler = new DataHandler();
-        Kitchen kitchen = new Kitchen();
         Bar bar = new Bar();
-        Cook cook = new Cook();
         BarMan barMan = new BarMan();
 
         if (!validOrder.isEmpty()) {
@@ -174,14 +174,20 @@ public class Zal {
             if (choose ==1){
                 HashMap<String, Integer> order = getOrder();
 
-                HashMap<String, Integer> handleOrder = handler.formOrder(
-                        handler.chiefOrder(order,chief,kitchen.getDish()),
-                        handler.coldProcess(order,cook.listOfCook(),kitchen.getDish()),
-                        handler.hotProcess(order,cook.listOfCook(),kitchen.getDish()),
-                        handler.haveSause(order,cook.listOfCook(),kitchen.getDish()),
-                        handler.barItems(order,bar.listDrink(),barMan));
+                HashMap<String, Integer> handleOrder = kitchen.formOrder(
+                        kitchen.chiefOrder(order,chief,kitchen.getDish()),
+                        kitchen.coldProcess(order,kitchen.listOfCook(),kitchen.getDish()),
+                        kitchen.hotProcess(order,kitchen.listOfCook(),kitchen.getDish()),
+                        kitchen.haveSause(order,kitchen.listOfCook(),kitchen.getDish()),
+                        kitchen.barItems(order,bar.listDrink(),barMan));
+                try {
+                    endOrder(handleOrder, kitchen.getPriceMenu());
 
-                endOrder(handleOrder, handler.getPriceMenu());
+                }catch (NullPointerException e){
+                    System.out.println("Нема таких позицій(");
+                }
+
+
 
 
             }
@@ -200,4 +206,5 @@ public class Zal {
         }
 
     }
+
 }

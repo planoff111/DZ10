@@ -45,13 +45,5 @@ public class Cook extends Employee {
 
 
 
-    public List<Cook>listOfCook(){
-        List<Cook> list = new ArrayList<>();
-        list.add(new Cook("Петро","Соусьє",false,false,true));
-        list.add(new Cook("Євген","Кухар",true,false,false));
-        list.add(new Cook("Вахтанг","Салатьє",false,true,false));
 
-
-        return list;
-    }
 }
