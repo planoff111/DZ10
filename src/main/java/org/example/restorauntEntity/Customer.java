@@ -1,4 +1,4 @@
-package org.example.dishes;
+package org.example.restorauntEntity;
 
 public class Customer {
 

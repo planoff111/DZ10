@@ -1,6 +1,9 @@
 package org.example.employees;
 
+import org.example.dishes.Dish;
+
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class Cook extends Employee {
@@ -8,6 +11,7 @@ public class Cook extends Employee {
     private boolean isHotProcess;
     private boolean isColdProcess;
     private boolean isCookingSauce;
+    Dish dish;
 
     public Cook() {
     }
@@ -23,27 +27,27 @@ public class Cook extends Employee {
         return isHotProcess;
     }
 
-    public void setHotProcess(boolean hotProcess) {
-        isHotProcess = hotProcess;
-    }
-
     public boolean isColdProcess() {
         return isColdProcess;
-    }
-
-    public void setColdProcess(boolean coldProcess) {
-        isColdProcess = coldProcess;
     }
 
     public boolean isCookingSauce() {
         return isCookingSauce;
     }
 
-    public void setCookingSauce(boolean cookingSauce) {
-        isCookingSauce = cookingSauce;
+    public String cookHot(HashMap<String, Dish> dishes,String itemName){
+        return "Страва " + dishes.get(itemName).getName() +
+                " На гарячому процессі:";
     }
 
+    public String cookCold(HashMap<String, Dish> dishes,String itemName){
+        return "Страва " + dishes.get(itemName).getName() +
+                " На холодному процесі :";
+    }
 
-
+    public String cookSause(HashMap<String, Dish> dishes,String itemName){
+        return "Страва " + dishes.get(itemName).getName() +
+                " Має соус. Повар, який готує соус: ";
+    }
 
 }

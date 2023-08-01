@@ -1,12 +1,10 @@
 package org.example.restorauntEntity;
 
-import org.example.dishes.Customer;
 import org.example.dishes.Dish;
 import org.example.dishes.Drink;
 import org.example.dishes.Item;
 import org.example.employees.BarMan;
 import org.example.employees.Chief;
-import org.example.employees.Cook;
 import org.example.employees.Waitress;
 
 import java.util.*;

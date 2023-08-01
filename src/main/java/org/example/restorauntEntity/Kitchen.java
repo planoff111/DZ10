@@ -14,6 +14,9 @@ import java.util.List;
 import java.util.Map;
 
 public class Kitchen {
+    Cook cook;
+    Zal zal;
+    Kitchen kitchen;
 
 
     public HashMap<String, Dish> getDish(){
@@ -68,8 +71,7 @@ public class Kitchen {
                     .filter(dish -> dish.getValue().isHotProcess())
                     .map(dish -> dish.getValue().getIngridients())
                     .forEach(dish -> {
-                        System.out.println("Страва " + dishes.get(itemName).getName() +
-                                " На гарячому процессі:");
+                        System.out.println(cook.cookHot(kitchen.getDish(),itemName));
 
                         for (Cook cook : cooks) {
                             if (cook.isHotProcess()) {
@@ -97,8 +99,7 @@ public class Kitchen {
                     .filter(dish -> dish.getValue().isColdProcess())
                     .map(dish -> dish.getValue().getIngridients())
                     .forEach(dish -> {
-                        System.out.println("Страва " + dishes.get(itemName).getName() +
-                                " На холодному процесі :");
+                        System.out.println(cook.cookCold(kitchen.getDish(),itemName));
 
                         for (Cook cook : cooks) {
                             if (cook.isColdProcess()) {
@@ -125,8 +126,7 @@ public class Kitchen {
                     .filter(dish -> dish.getValue().isHaveSause())
                     .map(dish -> dish.getValue().getIngridients())
                     .forEach(dish -> {
-                        System.out.println("Страва " + dishes.get(itemName).getName() +
-                                " Має соус. Повар, який готує соус: ");
+                        System.out.println(cook.cookSause(kitchen.getDish(),itemName));
 
                         for (Cook cook : cooks) {
                             if (cook.isCookingSauce()) {
