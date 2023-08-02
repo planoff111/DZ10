@@ -3,6 +3,7 @@ package org.example.restorauntEntity;
 import org.example.dishes.Dish;
 import org.example.dishes.Drink;
 import org.example.dishes.Item;
+import org.example.dishes.States;
 import org.example.employees.BarMan;
 import org.example.employees.Chief;
 import org.example.employees.Cook;
@@ -22,21 +23,29 @@ public class Kitchen {
     public HashMap<String, Dish> getDish(){
         HashMap<String, Dish> listDish = new HashMap<>();
         listDish.put("паста",new Dish("Паста",150,true,true,
-                List.of("Макарони","Моцарела","Соус Болоньєз"),false,false));
+                List.of("Макарони","Моцарела","Соус Болоньєз"),false,false,
+                List.of(States.BOLED,States.WITH_SAUCE)));
         listDish.put("вареники",new Dish("Вареники",50,false,false,
-                List.of("Тісто","Начинка","Масло"),true,false));
+                List.of("Тісто","Начинка","Масло"),true,false,List.of(States.BOLED)));
         listDish.put("салат греческий",new Dish("Салат Греческий",75,false,false,
-                List.of("Оливки","Фета","Салат","Оливкова олія"),false,true));
+                List.of("Оливки","Фета","Салат","Оливкова олія"),false,true,
+                List.of(States.SALAT_MAKES)));
         listDish.put("борщ",new Dish("Борщ",200,false,true,
-                List.of("Вода","Мясо","Буряк","Морква","Картопля","Зажарка"),false,false));
+                List.of("Вода","Мясо","Буряк","Морква","Картопля","Зажарка"),false,false,
+                List.of(States.BOLED)));
         listDish.put("уха",new Dish("Уха",75,false,false,
-                List.of("Риба","Вода","Картопля"),true,false));
+                List.of("Риба","Вода","Картопля"),true,false,
+                List.of(States.BOLED)));
         listDish.put("різотто",new Dish("Різотто",175,true,true,
-                List.of("Рис","Соуc для Різотто","Сир","Вода"),false,false));
+                List.of("Рис","Соуc для Різотто","Сир","Вода"),false,false,
+                List.of(States.WITH_SAUCE)));
         listDish.put("салат від шефа",new Dish("Салат від Шефа",250,true,true,
-                List.of("Секретні інгрідієнти","Секретний соус"),false,false));
+                List.of("Секретні інгрідієнти","Секретний соус"),false,false,
+                List.of(States.SALAT_MAKES,States.WITH_SAUCE)));
         listDish.put("картопля фрі",new Dish("Картопля Фрі",90,true,false,
-                List.of("Картопля","Олія","Кетчуп фірмовий"),true,false));
+                List.of("Картопля","Олія","Кетчуп фірмовий"),true,false,
+                List.of(States.WITH_SAUCE,States.FRIED)));
+
 
         return listDish;
     }

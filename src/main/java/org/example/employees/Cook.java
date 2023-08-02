@@ -6,12 +6,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class Cook extends Employee {
+public class Cook extends Employee implements Runnable{
+    Dish dish;
 
     private boolean isHotProcess;
     private boolean isColdProcess;
     private boolean isCookingSauce;
-    Dish dish;
 
     public Cook() {
     }
@@ -50,4 +50,26 @@ public class Cook extends Employee {
                 " Має соус. Повар, який готує соус: ";
     }
 
+    public void boil(){
+        System.out.println(" Вариться страва " + dish.getName());
+    }
+
+    public void fry(){
+        System.out.println(" Жариться страва " + dish.getName());
+    }
+
+    public void chop(){
+        System.out.println(" Нарізається страва " + dish.getName());
+    }
+
+    public void addSause(){
+        System.out.println(" Додається соус у  страву " + dish.getName());
+    }
+    public void createSalad(){
+        System.out.println(" Збирається салат " + dish.getName());
+    }
+    @Override
+    public void run() {
+
+    }
 }
