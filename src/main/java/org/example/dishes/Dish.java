@@ -22,39 +22,24 @@ public class Dish extends Item {
         return haveSause;
     }
 
-    public void setHaveSause(boolean haveSause) {
-        this.haveSause = haveSause;
-    }
 
     public boolean isFromChief() {
         return fromChief;
     }
 
-    public void setFromChief(boolean fromChief) {
-        this.fromChief = fromChief;
-    }
 
     public List<String> getIngridients() {
         return ingridients;
     }
 
-    public void setIngridients(List<String> ingridients) {
-        this.ingridients = ingridients;
-    }
 
     public boolean isHotProcess() {
         return hotProcess;
     }
 
-    public void setHotProcess(boolean hotProcess) {
-        this.hotProcess = hotProcess;
-    }
 
     public boolean isColdProcess() {
         return coldProcess;
     }
 
-    public void setColdProcess(boolean coldProcess) {
-        this.coldProcess = coldProcess;
-    }
 }
